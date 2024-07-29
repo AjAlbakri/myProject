@@ -1,0 +1,71 @@
+use rand::seq::SliceRandom;
+use std::io;
+
+// Define a struct to represent individual playing cards.
+#[derive(Copy, Clone)]
+struct Card {
+    value: i32,
+}
+//In this code I had to create a deck of cards, this generates a new Vec card which represents a deck
+fn create_deck() -> Vec<Card> {
+    (1..=13).map(|value| Card { value }).collect()
+}
+
+//This code is to shuffle the deck
+// basiaclly it takes an existing shuffle and returns a new shuffle deck.
+fn shuffle_deck(mut deck: Vec<Card>) -> Vec<Card> {
+    deck.shuffle(&mut rand::thread_rng());
+    deck
+}
+
+//This code is to draw a crad from the deck.
+
+fn draw_card(deck: Vec<Card>) -> (Option<Card>, Vec<Card>) {
+    if let Some((first, elements)) = deck.split_first() {
+        (Some(*first), elements.to_vec())
+    } else {
+        (None, Vec::new())
+    }
+}
+
+//This function calculates the sum of cards in a hand.
+// it takes a slice of card and return their total value.
+
+
+fn calculate_sum(cards: &[Card]) -> i32 {
+    cards.iter().map(|card| card.value).sum()
+}
+
+// this code handles the loop
+fn game_loop(player_name: &str, mut deck: Vec<Card>, mut player_cards: Vec<Card>, mut player_sum: i32) {
+    println!("{}'s Cards: {:?}", player_name, player_cards);
+    println!("{}'s Sum: {}", player_name, player_sum);
+
+ // check the blackjack
+    if player_sum == 21 {
+        println!("You've got Blackjack!");
+        return;
+    } else if player_sum > 21 {
+        println!("You're out of the game!");
+        return;
+    }
+}
+
+
+   // ask the player for next move
+    println!("Do you want to draw a new card? (yes/no)");
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read input");
+    let input = input.trim().to_lowercase();
+
+    // prcocessed the player input
+    if input == "yes" {
+        let (drawn_card, new_deck) = draw_card(deck);
+        if let Some(card) = drawn_card {
+            player_cards.push(card);
+            player_sum = calculate_sum(&player_cards);
+            game_loop(player_name, new_deck, player_cards, player_sum);
+        }
+    }
+
+    

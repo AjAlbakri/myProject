@@ -1,0 +1,184 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#define DECK_SIZE 13  // The total number of cards in the deck.
+#define MAX_CARDS 5   // The maximum number of cards a player can hold.
+
+// Structure representing a player.
+typedef struct {
+    char name[50];   // Player's name.
+    int balance;     // Player's balance or score.
+} Player;
+
+// Structure representing a card.
+typedef struct {
+    int value;       // Value of the card.
+} Card;
+
+// Structure representing a deck of cards.
+typedef struct {
+    Card cards[DECK_SIZE];  // Array of cards in the deck.
+    int top;                // Index of the top card in the deck.
+} Deck;
+
+// Global variables representing game state.
+Player player;
+Deck deck;
+Card player_cards[MAX_CARDS];  // Array to hold the player's cards.
+int player_card_count = 0;     // Number of cards the player has.
+int player_sum = 0;            // Sum of the player's card values.
+int computer_sum = 0;          // Sum of the computer's card values.
+int is_alive = 0;              // Flag to indicate if the game is ongoing.
+int has_blackjack = 0;         // Flag to indicate if the player has Blackjack.
+
+// Initializes the deck with cards.
+void initialize_deck() {
+    for (int i = 0; i < DECK_SIZE; i++) {
+        deck.cards[i].value = i + 1;  // Assign values to the cards.
+    }
+    deck.top = DECK_SIZE - 1;
+}
+
+// Shuffles the deck of cards.
+void shuffle_deck() {
+    for (int i = 0; i < DECK_SIZE; i++) {
+        int j = rand() % DECK_SIZE;
+        Card temp = deck.cards[i];
+        deck.cards[i] = deck.cards[j];
+        deck.cards[j] = temp;
+    }
+}
+
+// Draws a card from the top of the deck.
+Card draw_card() {
+    if (deck.top >= 0) {
+        return deck.cards[deck.top--];  // Return the top card and decrease the top index.
+    } else {
+        Card empty = {0};               // Return an empty card if the deck is empty.
+        return empty;
+    }
+}
+
+// Calculates the sum of the player's cards.
+void calculate_player_sum() {
+    player_sum = 0;
+    for (int i = 0; i < player_card_count; i++) {
+        player_sum += player_cards[i].value;  // Add up the card values.
+    }
+}
+
+// Starts the game by drawing two cards for the player.
+void start_game() {
+    is_alive = 1;
+    player_cards[player_card_count++] = draw_card();
+    player_cards[player_card_count++] = draw_card();
+    calculate_player_sum();
+}
+
+// Renders the current game state to the console.
+void render_game() {
+    printf("\n%s's Cards: ", player.name);
+    for (int i = 0; i < player_card_count; i++) {
+        printf("%d ", player_cards[i].value);
+    }
+    printf("\n%s's Sum: %d\n", player.name, player_sum);
+
+    // Check the game status and print appropriate message.
+    if (player_sum > 21) {
+        printf("You're out of the game!\n");
+        is_alive = 0;
+    } else if (player_sum == 21) {
+        printf("You've got Blackjack!\n");
+        has_blackjack = 1;
+        is_alive = 0;
+    } else {
+        printf("Do you want to draw a new card? (yes/no): ");
+    }
+}
+
+// Simulates the computer's turn.
+void computer_turn() {
+    while (computer_sum < 17) {
+        Card new_card = draw_card();
+        computer_sum += new_card.value;
+        printf("Computer draws a card: %d\n", new_card.value);
+    }
+    printf("Computer's final sum: %d\n", computer_sum);
+}
+
+int main() {
+    srand(time(NULL)); // Seed the random number generator.
+
+    // Initialize player.
+    strcpy(player.name, "Abdi JABAR MOHAMED-MUKTAR");
+    player.balance = 21407482;
+
+    // Setup and start the game.
+    initialize_deck();
+    shuffle_deck();
+    start_game();
+    render_game();
+
+    // Player's turn to draw cards.
+    char decision[10];
+    while (is_alive && player_sum < 21) {
+        scanf("%s", decision);
+        if (strcmp(decision, "yes") == 0) {
+            player_cards[player_card_count++] = draw_card();
+            calculate_player_sum();
+            render_game();
+        } else {
+            break;
+        }
+    }
+
+    // Determine the outcome of the game.
+    if (!has_blackjack) {
+        computer_turn();
+
+        if (computer_sum > 21) {
+            printf("Computer went bust. You win!\n");
+        } else if (computer_sum > player_sum) {
+            printf("Computer wins!\n");
+        } else if (computer_sum < player_sum) {
+            printf("%s wins!\n", player.name);
+        } else {
+            printf("It's a draw!\n");
+        }
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+ 
+
+   
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+

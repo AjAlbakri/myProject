@@ -1,0 +1,120 @@
+import random
+
+## Define a class for the Player
+class Player:
+    def __init__(self, name, balance):
+        self.name = name
+        self.balance = balance
+
+# Define a class for a Card
+class Card:
+    def __init__(self, value):
+        self.value = value
+
+# Define a class for the Deck of cards
+class Deck:
+    def __init__(self):
+        self.cards = [Card(value) for value in range(1, 14)]
+        self.shuffle()
+
+    def shuffle(self):
+        random.shuffle(self.cards)
+
+    def draw_card(self):
+        if self.cards:
+            return self.cards.pop()
+        else:
+            return None
+
+# #Define a class for the Blackjack game
+class BlackjackGame:
+    def __init__(self, player_name, starting_balance=1000):
+        self.player = Player(name=player_name, balance=starting_balance)
+        self.cards = []
+        self.sum = 0
+        self.has_blackjack = False
+        self.is_alive = False
+        self.message = ""
+        self.computer_sum = 0
+        self.deck = Deck()  ### Initialize the deck here
+        
+        ## this section is start the game 
+
+    def start_game(self):
+        self.is_alive = True
+        self.cards = [self.deck.draw_card(), self.deck.draw_card()]
+        self.calculate_sum() ## calculate the sum of the players cards
+        self.render_game()## display palyers card
+
+    def calculate_sum(self):
+        self.sum = sum(card.value for card in self.cards)
+        ## this code calculates the players card
+
+    def render_game(self):
+        ## this code siplayes players cards and current sum
+        cards_str = f"{self.player.name}'s Cards: " + " ".join(str(card.value) for card in self.cards)
+        sum_str = f"{self.player.name}'s Sum: {self.sum}"
+
+        print(cards_str)
+        print(sum_str)
+
+        if self.sum <= 21:
+            self.message = "Do you want to draw a new card? (yes/no)"
+        elif self.sum == 21:
+            self.message = "You've got Blackjack!"
+            self.has_blackjack = True
+            self.is_alive = False
+        else:
+            self.message = "You're out of the game!"
+            self.is_alive = False
+
+        print(self.message)
+
+    def computer_turn(self):
+        ## this section allows the computer to take its turn
+        while self.computer_sum < 17:
+            new_card = self.deck.draw_card()
+            if new_card:
+                self.computer_sum += new_card.value
+                print(f"Computer draws a card: {new_card.value}")
+            else:
+                print("No more cards in the deck.")
+                break
+
+        print(f"Computer's final sum: {self.computer_sum}")
+
+if __name__ == "__main__":
+    player_name = "Abdi JABAR MOHAMED-MUKTAR"
+    starting_balance = 21407482
+    blackjack_game = BlackjackGame(player_name=player_name, starting_balance=starting_balance)
+
+    blackjack_game.start_game()
+
+    while blackjack_game.is_alive and input("Do you want to draw a new card? (yes/no): ").lower() == 'yes':
+        new_card = blackjack_game.deck.draw_card()
+        if new_card:
+            blackjack_game.cards.append(new_card)
+            blackjack_game.calculate_sum()
+            blackjack_game.render_game()
+        else:
+            print("No more cards in the deck.")
+            break
+
+    if blackjack_game.has_blackjack:
+        print(f"{blackjack_game.player.name} wins! You've got Blackjack!")
+    else:
+        print(f"{blackjack_game.player.name} went bust. Computer's turn.")
+
+        blackjack_game.computer_turn()
+
+        if blackjack_game.computer_sum > 21:
+            print("Computer went bust. You win!")
+        elif blackjack_game.computer_sum > blackjack_game.sum:
+            print("Computer wins!")
+        elif blackjack_game.computer_sum < blackjack_game.sum:
+            print(f"{blackjack_game.player.name} wins!")
+        else:
+            print("It's a draw!")
+
+
+

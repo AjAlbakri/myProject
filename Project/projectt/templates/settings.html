@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Storytelling Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Navigation Styles */
+        nav ul {
+        
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav ul li a:hover {
+            color: #007bff; /* Change color on hover */
+        }
+
+        /* Content Styles */
+        .settings-content {
+            font-family: 'Arial', sans-serif; /* Change font to Arial */
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            font-family: 'Georgia', serif; /* Change font to Georgia */
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a:hover {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Settings</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/settings">Settings</a></li>
+                    <li><a href="/elderly">Elderly</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <div class="settings-content">
+            <p>Welcome to the Settings page. Here you can customize your experience with the Storytelling Chatbot.</p>
+            <p>Choose from the options below to personalize your chat experience based on different genres:</p>
+
+            <br>
+
+            <h2>Romance Genre</h2>
+            
+         
+            <p>Romance novels often explore themes of love, passion, and relationships.  <br>They transport readers into worlds filled with heartwarming <br> tales of connection and intimacy, where characters <br> embark on journeys of self-discovery and emotional fulfillment.</p>
+
+            <h2>Fantasy Genre</h2>
+            <p>Fantasy literature invites readers into realms of magic,<br> mythical creatures, and epic adventures. From enchanted forests to mystical kingdoms, <br>fantasy stories ignite the imagination, offering escapism and excitement as heroes<br> and heroines embark on quests to save their worlds.</p>
+            
+            <h2>Thriller Genre</h2>
+            <p>Thriller novels are packed with suspense, intrigue, and unexpected twists.<br> They keep readers on the edge of their seats, unraveling mysteries <br>and uncovering dark secrets as protagonists race against time to solve crimes and outwit adversaries.</p>
+        </div>
+            
+           
+        </div>
+
+        <!-- Burger icon menu -->
+        <div class="burger-menu" onclick="toggleSidebar()">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </div>
+
+        <div class="sidebar hidden" id="sidebar">
+            <ul>
+                <li><a href="/conversation?genre=romance">Romance</a></li>
+                <li><a href="/conversation?genre=thriller">Thriller</a></li>
+                <li><a href="/conversation?genre=fantasy">Fantasy</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

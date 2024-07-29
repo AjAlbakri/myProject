@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storytelling Chatbot</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="light">
+
+<header class="light" id="header">
+    <nav>
+        <ul class="top-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+           
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/elderly">Elderly</a></li>
+
+            
+        </ul>
+    </nav>
+    <h1>Welcome to the <span class="chatbot-title">Storytelling Chatbot</span></h1>
+</header>
+
+
+<div class="theme-panel hidden" id="themePanel">
+    <h2>Chat Theme</h2>
+    <label for="theme-select">Choose a theme:</label>
+    <select id="theme-select" onchange="changeTheme()">
+        <option value="light">Light Theme</option>
+        <option value="dark">Dark Theme</option>
+    </select>
+</div>
+
+<div class="container light">
+    <div class="sidebar">
+        <ul>
+            <li><a href="#" onclick="createNewConversation()">New Conversation</a></li>
+        </ul>
+    </div>
+
+  
+    <div class="chat-container light">
+       
+        <div id="chat-log" class="chat-log light" style="background-color: #f7f7f7;"></div>
+        <div class="input-container">
+            <input type="text" id="user-input" class="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()" class="send-button">Send</button>
+        </div>
+       
+        <div id="speech-indicator" class="speech-indicator hidden">Speaking...</div>
+    </div>
+    
+    </div>
+</div>
+
+<script>
+    var currentConversationId = null;
+    var swearWords = ['fuck', 'shit', 'asshole', 'bitch', 'bastard', 'damn', 'crap', 'ass', 'dick', 'pussy', 'pussio'];
+
+ 
+
+   
+// this function is resposnsible for sending user input to the server flask route for processing abd dsiplaying bots 
+    function sendMessage() {
+        var userInput = document.getElementById('user-input').value.trim().toLowerCase();
+        if (userInput !== '') {
+            if (checkSwearWords(userInput)) {
+                alert("Sorry, the message contains inappropriate language. Please refrain from using swear words.");
+                return;
+            }
+            appendMessage('user', userInput);
+            document.getElementById('user-input').value = '';
+            // Sending  user input to Flask route using fetch
+            fetch('/get', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ msg: userInput })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                appendMessage('bot', data.response, data.options);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }
+// unction is responsible for adding a new message to the chat log in the HTML document. 
+//It also handles the display of interactive options provided by the bot,
+// if any, and triggers a speech synthesis for bot responses.
+    function appendMessage(sender, message, options) {
+        var chatLog = document.getElementById('chat-log');
+        var messageElement = document.createElement('div');
+        messageElement.classList.add('message', sender === 'user' ? 'user-message' : 'bot-message');
+        messageElement.textContent = message;
+        chatLog.appendChild(messageElement);
+        chatLog.scrollTop = chatLog.scrollHeight;
+
+        // Display interactive options if provided by the bot
+        if (options && options.length > 0) {
+            var optionsContainer = document.createElement('div');
+            optionsContainer.classList.add('options-container');
+            options.forEach(option => {
+                var button = document.createElement('button');
+                button.textContent = option.label;
+                button.onclick = function() {
+                    // Send the selected option back to the bot
+                    sendMessage(option.value);
+                    // Remove the options from the chat log
+                    chatLog.removeChild(optionsContainer);
+                };
+                optionsContainer.appendChild(button);
+            });
+            chatLog.appendChild(optionsContainer);
+        }
+
+        // the bot epsonses and u can hear it 
+        if (sender === 'bot') {
+            speak(message);
+        }
+    }
+
+    function speak(text) {
+        var speechIndicator = document.getElementById('speech-indicator');
+        speechIndicator.classList.remove('hidden');
+
+        if ('speechSynthesis' in window) {
+            var utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.onend = function(event) {
+                speechIndicator.classList.add('hidden');
+            };
+            speechSynthesis.speak(utterance);
+        } else {
+            alert('Speech synthesis is not supported by your browser.');
+        }
+    }
+
+    // visibility
+    function toggleThemePanel() {
+        var themePanel = document.getElementById('themePanel');
+        themePanel.classList.toggle('hidden');
+    }
+
+    // this function is responsible for changing the themes
+    function changeTheme() {
+        var themeSelect = document.getElementById('theme-select');
+        var selectedTheme = themeSelect.value;
+
+        // u can set the theme for the header 
+        var header = document.getElementById('header');
+        header.className = selectedTheme;
+
+        var chatContainer = document.querySelector('.chat-container');
+        chatContainer.className = 'chat-container ' + selectedTheme;
+
+        
+        localStorage.setItem('chat_theme', selectedTheme);
+    }
+
+  
+    function checkSwearWords(input) {
+        for (var i = 0; i < swearWords.length; i++) {
+            if (input.includes(swearWords[i])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    window.onload = function() {
+        var savedTheme = localStorage.getItem('chat_theme');
+        if (savedTheme) {
+            changeTheme();
+        }
+    };
+</script>
+</body>
+</html>

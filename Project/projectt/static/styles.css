@@ -1,0 +1,254 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Header Styles */
+header {
+    background-color: #0056b3; /* Changed background color */
+    color: #fff;
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.top-nav {
+    text-align: center;
+}
+
+.top-nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.top-nav li a {
+    color: #000; /* Changed text color */
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 18px;
+}
+
+.top-nav li a:hover {
+    color: #ddd;
+}
+
+/* Container Styles */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 20px;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+    color: #ddd;
+}
+
+/* Chat Container Styles */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 20px;
+    width: calc(100% - 200px);
+    padding-left: 220px;
+}
+
+/* Chat Log Styles */
+.chat-log {
+    flex: 1;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/* Input Container Styles */
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+/* User Input Styles */
+.user-input {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    outline: none;
+    font-size: 16px;
+    width: 500px;
+    min-height: 50px;
+    resize: vertical;
+    background-color: #fff;
+    z-index: 2;
+}
+
+/* Send Button Styles */
+.send-button {
+    position: fixed;
+    bottom: 30px;
+    right: 370px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #0056b3;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    z-index: 6;
+}
+
+.send-button:hover {
+    background-color: #004280;
+}
+
+/* Burger Menu Styles */
+.burger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: 20px;
+}
+
+.burger-line {
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+}
+
+/* Text to Speech Indicator Styles */
+.speech-indicator {
+    position: fixed;
+    bottom: 30px;
+    right: 205px; /* Adjusted position to create space */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 6;
+    transition: bottom 0.3s;
+}
+
+/* Light Theme Styles */
+body.light {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.container.light {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+header.light {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.top-nav li a.light {
+    color: #000;
+}
+
+.chat-container.light {
+    background-color: #f7f7f7;
+}
+
+.chat-log.light {
+    background-color: #fff;
+    color: #333;
+}
+
+.user-message {
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.bot-message {
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Dark Theme Styles */
+body.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.container.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+header.dark {
+    background-color: #444;
+    color: #fff;
+}
+
+.top-nav li a.dark {
+    color: #fff;
+}
+
+.chat-container.dark {
+    background-color: #222;
+}
+
+.chat-log.dark {
+    background-color: #111;
+    color: #fff;
+}

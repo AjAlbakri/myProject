@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Teachings.LoginPage"
+             Title="User Login"
+             BackgroundColor="#2c3e50">
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <ScrollView Grid.Row="0">
+                <StackLayout Spacing="25"
+                             Padding="30,0,30,0"
+                             VerticalOptions="Center"
+                             HorizontalOptions="FillAndExpand">
+
+                    <!-- Login Section -->
+                    <Label Text="USER LOGIN"
+                           FontSize="Title"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           AutomationProperties.Name="User Login Label" />
+                    <Entry x:Name="UsernameEntry"
+       Placeholder="Username"
+       PlaceholderColor="#95a5a6"
+       TextColor="White"
+       BackgroundColor="#34495e"
+       Margin="0,0,0,10"
+       HeightRequest="50"
+       Keyboard="Default"
+       AutomationProperties.Name="Username Entry"
+       FontSize="20" />
+                    <!-- Adjust font size here -->
+
+                    <Entry x:Name="PasswordEntry"
+       Placeholder="Password"
+       PlaceholderColor="#95a5a6"
+       TextColor="White"
+       BackgroundColor="#34495e"
+       Margin="0,10,0,0"
+       HeightRequest="50"
+       IsPassword="True"
+       Keyboard="Default"
+       AutomationProperties.Name="Password Entry"
+       FontSize="20" />
+                    <!-- Adjust font size here -->
+
+
+                    <Button x:Name="LoginButton"
+                            Text="LOGIN"
+                            BackgroundColor="#16a085"
+                            TextColor="White"
+                            CornerRadius="0"
+                            HeightRequest="50"
+                            FontAttributes="Bold"
+                            Clicked="OnLoginClicked"
+                            AutomationProperties.Name="Login Button" />
+
+                    <!-- Profile Picture -->
+                    <Frame x:Name="ProfileFrame" CornerRadius="50" HeightRequest="100" WidthRequest="100" BackgroundColor="#EEEEEE" HorizontalOptions="Center">
+                        <Label Text="Your Profile Picture" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" AutomationProperties.Name="Profile Picture Label" />
+                    </Frame>
+
+                    <!-- Capture Photo Button -->
+                    <Button x:Name="CaptureButton" Text="Capture Photo" Clicked="OnCapturePhotoClicked" HorizontalOptions="FillAndExpand" AutomationProperties.Name="Capture Photo Button" />
+
+                    <!-- Next Button (Hidden by default) -->
+                    <Button x:Name="NextButton" Text="Next" Clicked="OnNavigateToLoginPageClicked" IsVisible="False" HorizontalOptions="FillAndExpand" AutomationProperties.Name="Next Button" />
+                </StackLayout>
+            </ScrollView>
+
+            <StackLayout Grid.Row="1" Padding="30">
+                <Button x:Name="LogoutButton"
+                        Text="Logout"
+                        BackgroundColor="#c0392b"
+                        TextColor="White"
+                        CornerRadius="0"
+                        HeightRequest="50"
+                        FontAttributes="Bold"
+                        Clicked="OnLogoutClicked"
+                        IsVisible="False"
+                        AutomationProperties.Name="Logout Button" />
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

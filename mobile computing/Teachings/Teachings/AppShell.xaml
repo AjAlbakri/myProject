@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    
+    <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:pages="clr-namespace:Teachings"
+       x:Class="Teachings.AppShell"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.NavBarIsVisible="True">
+
+    <FlyoutItem Route="main">
+        <ShellContent ContentTemplate="{DataTemplate pages:SplashScreenPage}" />
+
+        <ShellContent ContentTemplate="{DataTemplate pages:WelcomePage}" />
+        <ShellContent ContentTemplate="{DataTemplate pages:LoginPage}" />
+        <ShellContent ContentTemplate="{DataTemplate pages:HomePage}" />
+
+        <ShellContent ContentTemplate="{DataTemplate pages:TestKnowledgePage}" />
+       
+
+        <ShellContent ContentTemplate="{DataTemplate pages:MyQuizPage}" />
+        <ShellContent ContentTemplate="{DataTemplate pages:MyQuizzPage2}" />
+        <ShellContent ContentTemplate="{DataTemplate pages:Story}" />
+        <ShellContent ContentTemplate="{DataTemplate pages:StoryPage}" />
+        <ShellContent ContentTemplate="{DataTemplate pages:EasyQuizess}" />
+
+
+    </FlyoutItem>
+
+    <Shell.ToolbarItems>
+        <ToolbarItem x:Name="BackButton"
+                     IconImageSource="ic_arrow_back_black.png" 
+                     Priority="0"
+                     Order="Primary"
+                     AutomationId="BackButton"
+                    
+                     Clicked="OnBackButtonClicked" />
+    </Shell.ToolbarItems>
+
+</Shell>

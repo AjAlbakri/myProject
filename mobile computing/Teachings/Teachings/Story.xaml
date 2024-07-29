@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Teachings.Story"
+             Title="Story">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <Label Text="{Binding StoryText}"
+                   VerticalOptions="StartAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+                   LineBreakMode="WordWrap" />
+            <Button Text="Answer Questions" Clicked="OnAnswerQuestionsClicked" />
+            <Button Text="▶ Play Story" Clicked="OnToggleReaderClicked" />
+
+            <Button Text="❚❚ Pause Story" Clicked="OnPauseClicked" IsVisible="True" x:Name="PauseButton" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

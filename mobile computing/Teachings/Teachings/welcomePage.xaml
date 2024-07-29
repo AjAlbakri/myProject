@@ -1,0 +1,49 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Teachings.WelcomePage"
+             BackgroundColor="#f0f4f7"
+             x:Name="welcomePage">
+
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="#333"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="Margin" Value="0,0,0,10"/>
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="#333"/>
+            <Setter Property="PlaceholderColor" Value="#aaa"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#5DADE2"/>
+            <Setter Property="Margin" Value="0,0,0,20"/>
+            <Setter Property="CornerRadius" Value="20"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="12,0,12,25" VerticalOptions="FillAndExpand" HorizontalOptions="Center" x:Name="QuestionsStack">
+        <!-- Question Label -->
+        <Label Text="{Binding CurrentQuestion}" 
+               FontSize="Large"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               Opacity="0"
+               AutomationProperties.Name="Question Label"/>
+
+        <!-- Answer Entry -->
+        <Entry Placeholder="Type your answer here..."
+               Margin="0,20"
+               Opacity="0"
+               AutomationProperties.Name="Answer Entry"/>
+
+        <!-- Next Button -->
+        <Button Text="Next"
+                Opacity="0"
+                Command="{Binding NextCommand}"
+                BackgroundColor="#5DADE2"
+                Margin="0,20"
+                AutomationProperties.Name="Next Button"/>
+    </StackLayout>
+</ContentPage>

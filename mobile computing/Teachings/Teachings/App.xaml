@@ -1,0 +1,31 @@
+﻿<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Teachings"
+             x:Class="Teachings.App"
+             Shell.FlyoutBehavior="Flyout"
+             Shell.NavBarIsVisible="True">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Define light and dark theme colors -->
+            <Color x:Key="LightPageBackgroundColor">#FFFFFF</Color>
+            <Color x:Key="DarkPageBackgroundColor">#1E1E1E</Color>
+
+            <!-- Define a boolean flag to track the current theme -->
+            <x:Boolean x:Key="IsDarkMode">false</x:Boolean>
+        </ResourceDictionary>
+
+        <!-- Define light theme resources -->
+        <ResourceDictionary x:Key="LightTheme">
+            <Style TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightPageBackgroundColor}" />
+            </Style>
+        </ResourceDictionary>
+
+        <!-- Define dark theme resources -->
+        <ResourceDictionary x:Key="DarkTheme">
+            <Style TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkPageBackgroundColor}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Teachings.HomePage"
+             Title="Home">
+
+    <Grid Padding="10">
+    
+        <Frame Grid.Column="0" HeightRequest="200" WidthRequest="200" CornerRadius="100" HasShadow="True" VerticalOptions="Start" BackgroundColor="#87CEEB">
+            <Image Source="dotnet_bot.svg" Aspect="AspectFill"/>
+        </Frame>
+
+    
+        <Button Grid.Row="1" Grid.Column="0" Text="General Quizzes" Clicked="OnGeneralQuizzesClicked" HorizontalOptions="Center" VerticalOptions="Start" Margin="20,380,0,0" AutomationProperties.Name="Navigate to General Quizzes"/>
+
+        <Button Grid.Row="2" Grid.Column="0" Text="Learning Language" Clicked="OnLearningLanguageClicked" HorizontalOptions="Center" VerticalOptions="Start" Margin="20,320,0,0" AutomationProperties.Name="Navigate to Learning Language"/>
+
+        <StackLayout Grid.Row="3" Grid.Column="0" Padding="10" VerticalOptions="End">
+            <Label Text="Welcome to our learning platform!" HorizontalOptions="Center" FontSize="Large" Margin="50,20,0,20"/>
+            <Label Text="Explore our wide range of courses and quizzes to enhance your knowledge and skills. Whether you're interested in learning a new language or testing your expertise with general quizzes, we've got you covered. Start your learning journey today!" HorizontalOptions="Center" FontSize="Medium" Margin="0,0,0,0"/>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

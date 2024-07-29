@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Light Theme Colors -->
+    <Color x:Key="LightPrimary">#512BD4</Color>
+    <Color x:Key="LightSecondary">#DFD8F7</Color>
+    <Color x:Key="LightTertiary">#2B0B98</Color>
+    <Color x:Key="LightWhite">#FFFFFF</Color>
+    <Color x:Key="LightBlack">#000000</Color>
+    <Color x:Key="LightGray100">#E1E1E1</Color>
+    <Color x:Key="LightGray200">#C8C8C8</Color>
+    <Color x:Key="LightGray300">#ACACAC</Color>
+    <Color x:Key="LightGray400">#919191</Color>
+    <Color x:Key="LightGray500">#6E6E6E</Color>
+    <Color x:Key="LightGray600">#404040</Color>
+    <Color x:Key="LightGray900">#212121</Color>
+    <Color x:Key="LightGray950">#141414</Color>
+
+    <!-- Dark Theme Colors -->
+    <Color x:Key="DarkPrimary">#1976D2</Color>
+    <Color x:Key="DarkSecondary">#03DAC6</Color>
+    <Color x:Key="DarkTertiary">#BB86FC</Color>
+    <Color x:Key="DarkWhite">#FFFFFF</Color>
+    <Color x:Key="DarkBlack">#000000</Color>
+    <Color x:Key="DarkGray100">#121212</Color>
+    <Color x:Key="DarkGray200">#1E1E1E</Color>
+    <Color x:Key="DarkGray300">#424242</Color>
+    <Color x:Key="DarkGray400">#616161</Color>
+    <Color x:Key="DarkGray500">#9E9E9E</Color>
+    <Color x:Key="DarkGray600">#BDBDBD</Color>
+    <Color x:Key="DarkGray900">#FFFFFF</Color>
+    <Color x:Key="DarkGray950">#F5F5F5</Color>
+
+    <!-- Accent Colors for both themes (you can adjust as needed) -->
+    <Color x:Key="AccentColor">#F7B548</Color>
+    <Color x:Key="AccentColorDark">#FFD590</Color>
+
+    <!-- Solid Color Brushes for Light Theme -->
+    <SolidColorBrush x:Key="LightPrimaryBrush" Color="{StaticResource LightPrimary}"/>
+    <SolidColorBrush x:Key="LightSecondaryBrush" Color="{StaticResource LightSecondary}"/>
+    <!-- Add more brushes for light theme -->
+
+    <!-- Solid Color Brushes for Dark Theme -->
+    <SolidColorBrush x:Key="DarkPrimaryBrush" Color="{StaticResource DarkPrimary}"/>
+    <SolidColorBrush x:Key="DarkSecondaryBrush" Color="{StaticResource DarkSecondary}"/>
+    <!-- Add more brushes for dark theme -->
+
+</ResourceDictionary>

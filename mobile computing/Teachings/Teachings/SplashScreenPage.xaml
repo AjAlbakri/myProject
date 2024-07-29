@@ -1,0 +1,36 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Teachings.SplashScreenPage"
+             BackgroundColor="#283593">
+
+    <ContentPage.Resources>
+        <!-- Styles -->
+    </ContentPage.Resources>
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <Label x:Name="WelcomeLabel"
+               Text="Welcome to an Exciting Learning Adventure!"
+               FontSize="Large"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               Opacity="0"
+               AutomationProperties.Name="Welcome Message"/>
+        <Label Text="Your Learning Journey Begins Here!"
+               FontSize="Large"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               Opacity="0"
+               AutomationProperties.Name="App Purpose"/>
+        <Button x:Name="GetStartedButton"
+                Text="GET STARTED"
+                Clicked="OnGetStartedClicked"
+                Scale="0"
+                AutomationProperties.Name="Get Started Button"
+                AutomationProperties.HelpText="Press to get started"
+                BackgroundColor="#4CAF50"
+                Pressed="OnButtonPressed"
+                AutomationProperties.IsInAccessibleTree="True"
+                AutomationId="GetStartedButton"/>
+    </StackLayout>
+</ContentPage>

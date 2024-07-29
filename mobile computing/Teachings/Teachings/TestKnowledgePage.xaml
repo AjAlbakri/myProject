@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Teachings.TestKnowledgePage"
+             Title="Test Knowledge Page"
+             BackgroundColor="#f0f0f0">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+      
+            <ColumnDefinition Width="Auto" />
+           
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+      
+        <StackLayout Grid.Column="0" BackgroundColor="#3498db" Padding="10">
+            <Button Text="Easy" Clicked="OnEasyClicked" Margin="0,10,0,10" BackgroundColor="#2ecc71" TextColor="White" />
+            <Button Text="Medium" Clicked="OnMediumClicked" Margin="0,10,0,10" BackgroundColor="#f1c40f" TextColor="White" />
+            <Button Text="Hard" Clicked="OnHardClicked" Margin="0,10,0,10" BackgroundColor="#e74c3c" TextColor="White" />
+        </StackLayout>
+
+        <ScrollView Grid.Column="1">
+            <StackLayout Padding="20" Spacing="20">
+              
+                <Label Text="Welcome to the Test Knowledge Page!"
+                       FontSize="24"
+                       HorizontalOptions="Center"
+                       TextColor="Black" />
+
+                <Label Text="This page allows you to test your knowledge on various topics and difficulty levels. Choose from the options on the sidebar to start your quiz!"
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       TextColor="Gray" />
+
+
+              
+               <Label Text="Welcome again! Whether you're just starting your Arabic journey or you're a seasoned speaker, there's a quiz mode tailored to your proficiency level. Expect an engaging experience where you can test your skills and expand your knowledge." 
+       FontSize="16"
+       HorizontalOptions="Center"
+       TextColor="Black"
+       Margin="0,20,0,0"/>
+
+               
+
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
